@@ -8,10 +8,11 @@ namespace StockMarket
 {
     class Stock
     {
-        private int price;
-        private int history;
-        private int historyTwo;
-        private string name;
+        public int Price { get; set; }
+        public int Owned { get; set; }
+        public int History { get; set; }
+        public int HistoryTwo { get; set; }
+        public string Name { get; set; }
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
         public static int RandomNumber(int min, int max)
@@ -21,15 +22,6 @@ namespace StockMarket
                 return random.Next(min, max);
             }
         }
-
-        public int Price
-        { get { return this.price; } set { this.price = value; } }
-        public int History
-        { get { return this.history; } set { this.history = value; } }
-        public int HistoryTwo
-        { get { return this.historyTwo; } set { this.historyTwo = value; } }
-        public string Name
-        { get { return this.name; } set { this.name = value; } }
 
         public Stock(string stockname)
         {
@@ -41,11 +33,11 @@ namespace StockMarket
             Month();
             Month();
         }
-        public void Month() // like a tick method advances the prices after each transaction
+        public void Month() // like a tick method advances the prices after each month
         {
             HistoryTwo = History;
             History = Price;
-            Price = RandomNumber(10, 100);
+            Price = RandomNumber((History-10), (History + 10));
         }
 
 

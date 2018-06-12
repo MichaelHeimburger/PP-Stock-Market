@@ -11,10 +11,11 @@ namespace StockMarket
         static void Main(string[] args)
         {
             MathLogic math = new MathLogic();
+            User user = new User();
 
             //Title Card
-            Console.WriteLine("Welcome to uTrade Solutions \n press enter to begin");
-            Console.ReadLine();
+            Console.WriteLine("Welcome to uTrade Solutions \n Press any key to begin");
+            Console.ReadKey();
             Console.Clear();
 
             //Adding Stocks to a list, soliciting user input
@@ -44,37 +45,105 @@ namespace StockMarket
             } //end input loop
 
 
-            int counter = 1;
             List<Stock> stockList = new List<Stock>(); // make new list of stock classes
             foreach(string name in stockNames) // make a stock class for each stock name and assign the names to the stocks
             {
                 Stock stock = new Stock(name);
                 stockList.Add(stock);
             }
-// game start shows chart of stocks
-            Console.WriteLine("Current prices for each stock are as follows:");
+            List<Stock> assets = new List<Stock>(); // list of owned stocks
+                                                    // game start shows chart of stocks and options
+            while (5 > 1)
+            {
+                StockStatus(stockList, math, user); // show status of all stocks
+                Console.WriteLine("You have ${0}.", user.Money);
+                Console.WriteLine("\n \n \n");
+                Console.WriteLine("You currently have ${0} availible.", user.Money);
+                Console.WriteLine("What would you like to do today?");
+                Console.WriteLine(" [1] Buy stocks \n [2] Sell stocks \n [3] Read the news \n [4] Go to Next month \n [5] Leave uTrade");
+                var keyin = Console.ReadKey();
+                switch (keyin.KeyChar)
+                {
+                    case '1':
+                        // BUY STOCKS CASE
+
+                        Console.Clear();
+                        StockStatusNum(stockList, math);
+                        Console.WriteLine("\n \n Enter the number of the Stock you would like to buy");
+                        int stockSelection = int.Parse(Console.ReadLine()); stockSelection--;
+                        Console.WriteLine(" \n And how many of that stock would you like to buy?");
+                        int stockOrder = int.Parse(Console.ReadLine());
+                        if (stockOrder * stockList[stockSelection].Price > user.Money)
+                        {
+                            Console.WriteLine("Sorry you dont have the funds in your account");
+                        }
+                        else
+                        {
+                            user.Money -= stockOrder * stockList[stockSelection].Price;
+                            stockList[stockSelection].Owned = stockOrder;
+                        }
+
+                        break;
+                    case '2':
+                        break;
+                    case '3':
+                        break;
+                    case '4':
+                        break;
+                    case '5':
+                        break;
+                }
+            }
+
+
+        }// main end
+         static public void StockStatus(List<Stock> stockList, MathLogic math, User user) // DISPLAYS STATUS OF ALL STOCKS
+        {
+            Console.WriteLine("uTrade TM:");
             Console.Write("Name:");
             for (int i = 0; i < math.charCountMax(stockList); i++)
             {
                 Console.Write(" ");
             }
-            Console.WriteLine("Price     History      History Two");
+            Console.WriteLine("Amt Owned     Price     History      History Two");
             foreach (Stock stockrelay in stockList)
             {
 
                 Console.Write(stockrelay.Name);
-                for(int i=0; i < math.charCountMax(stockList) - stockrelay.Name.Length;i++)
+                for (int i = 0; i < math.charCountMax(stockList) - stockrelay.Name.Length; i++)
                 {
                     Console.Write(" ");
                 }
-                Console.Write("     " + stockrelay.Price + "          " + stockrelay.History + "           " +  stockrelay.HistoryTwo);
+                Console.Write("          " + stockrelay.Owned + "          " + stockrelay.Price + "         " + stockrelay.History + "             " + stockrelay.HistoryTwo);
                 Console.WriteLine();
+               
+            } 
+
+        }// STOCK STATUS
+        static public void StockStatusNum(List<Stock> stockList, MathLogic math) // DISPLAYS STATUS OF ALL STOCKS, NUMBERS FOR BUYING/SELLING
+        {
+            int counter = 1;
+            Console.WriteLine("uTrade TM:");
+            Console.Write("Num: Name:");
+            for (int i = 0; i < math.charCountMax(stockList); i++)
+            {
+                Console.Write(" ");
             }
-            Console.ReadLine();
+            Console.WriteLine("Amt Owned     Price     History      History Two");
+            foreach (Stock stockrelay in stockList)
+            {
+                Console.WriteLine();
+                Console.Write("[{0}] ", counter); Console.Write(" " + stockrelay.Name);
+                
+                for (int i = 0; i < math.charCountMax(stockList) - stockrelay.Name.Length; i++)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write("          " + stockrelay.Owned + "          " + stockrelay.Price + "         " + stockrelay.History + "             " + stockrelay.HistoryTwo);
+                Console.WriteLine();
+                counter++;
+            }
 
-
-
-
-        }// main
+        }// STOCK STATUS
     }
 }
