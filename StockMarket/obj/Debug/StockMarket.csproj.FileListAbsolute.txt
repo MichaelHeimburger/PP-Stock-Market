@@ -1,0 +1,14 @@
+C:\Users\Michael\source\repos\StockMarket\StockMarket\bin\Debug\StockMarket.exe.config
+C:\Users\Michael\source\repos\StockMarket\StockMarket\bin\Debug\StockMarket.exe
+C:\Users\Michael\source\repos\StockMarket\StockMarket\bin\Debug\StockMarket.pdb
+C:\Users\Michael\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.csprojAssemblyReference.cache
+C:\Users\Michael\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.csproj.CoreCompileInputs.cache
+C:\Users\Michael\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.exe
+C:\Users\Michael\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.pdb
+C:\Users\WeCanCodeIT\source\repos\StockMarket\StockMarket\bin\Debug\StockMarket.exe.config
+C:\Users\WeCanCodeIT\source\repos\StockMarket\StockMarket\bin\Debug\StockMarket.exe
+C:\Users\WeCanCodeIT\source\repos\StockMarket\StockMarket\bin\Debug\StockMarket.pdb
+C:\Users\WeCanCodeIT\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.csprojAssemblyReference.cache
+C:\Users\WeCanCodeIT\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.csproj.CoreCompileInputs.cache
+C:\Users\WeCanCodeIT\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.exe
+C:\Users\WeCanCodeIT\source\repos\StockMarket\StockMarket\obj\Debug\StockMarket.pdb
