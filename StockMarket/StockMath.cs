@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockMarket
 {
-    class MathLogic
+    class StockMath
     {
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
@@ -17,7 +17,7 @@ namespace StockMarket
                 return random.Next(min, max);
             }
         }
-        public MathLogic()
+        public StockMath()
         {
 
         }

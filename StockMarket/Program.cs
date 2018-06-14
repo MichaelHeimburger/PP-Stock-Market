@@ -10,8 +10,11 @@ namespace StockMarket
     {
         static void Main(string[] args)
         {
-            MathLogic math = new MathLogic();
+            //declared up here for convienince
+            int stockSelection;
+            StockMath math = new StockMath();
             User user = new User();
+            int stockOrder;
 
             //Title Card
             Console.WriteLine("Welcome to uTrade Solutions \n Press any key to begin");
@@ -55,6 +58,7 @@ namespace StockMarket
                                                     // game start shows chart of stocks and options
             while (5 > 1)
             {
+                Console.Clear();
                 StockStatus(stockList, math, user); // show status of all stocks
                 Console.WriteLine("You have ${0}.", user.Money);
                 Console.WriteLine("\n \n \n");
@@ -70,25 +74,54 @@ namespace StockMarket
                         Console.Clear();
                         StockStatusNum(stockList, math);
                         Console.WriteLine("\n \n Enter the number of the Stock you would like to buy");
-                        int stockSelection = int.Parse(Console.ReadLine()); stockSelection--;
+                        stockSelection = int.Parse(Console.ReadLine()); stockSelection--;
                         Console.WriteLine(" \n And how many of that stock would you like to buy?");
-                        int stockOrder = int.Parse(Console.ReadLine());
+                        stockOrder = int.Parse(Console.ReadLine());
                         if (stockOrder * stockList[stockSelection].Price > user.Money)
                         {
-                            Console.WriteLine("Sorry you dont have the funds in your account");
+                            Console.WriteLine("Sorry you dont have the funds in your account \n press any key to continue..........");
+                            Console.ReadKey();
                         }
                         else
                         {
                             user.Money -= stockOrder * stockList[stockSelection].Price;
-                            stockList[stockSelection].Owned = stockOrder;
+                            stockList[stockSelection].Owned += stockOrder;
                         }
 
                         break;
                     case '2':
+                        // SELL STOCK CASE
+
+                        Console.Clear();
+                        StockStatusNum(stockList, math);
+                        Console.WriteLine("\n \n Enter the number of the Stock you would like to buy");
+                        stockSelection = int.Parse(Console.ReadLine()); stockSelection--;
+                        Console.WriteLine("\n How many {0} would you like to sell?", stockList[stockSelection].Name);
+                        stockOrder = int.Parse(Console.ReadLine());
+                        if (stockOrder > stockList[stockSelection].Owned)
+                        {
+                            Console.WriteLine("Sorry you dont have that many {0} \n press any key to continue.........", stockList[stockSelection].Name);
+
+                        }
+                        else
+                        {
+                            user.Money += stockOrder * stockList[stockSelection].Price;
+                            stockList[stockSelection].Owned -= stockOrder;
+                        }
                         break;
                     case '3':
+ // News Case
+                        Console.Clear();
+                        foreach(Stock stocknews in stockList)
+                        {
+                            Console.WriteLine(stocknews.News);
+                        }
+                        Console.WriteLine("Press any key to go back to the console.");
+                        Console.ReadKey();
                         break;
                     case '4':
+                        // Advance month case
+                        math.AllMonth(stockList);
                         break;
                     case '5':
                         break;
@@ -97,7 +130,7 @@ namespace StockMarket
 
 
         }// main end
-         static public void StockStatus(List<Stock> stockList, MathLogic math, User user) // DISPLAYS STATUS OF ALL STOCKS
+         static public void StockStatus(List<Stock> stockList, StockMath math, User user) // DISPLAYS STATUS OF ALL STOCKS
         {
             Console.WriteLine("uTrade TM:");
             Console.Write("Name:");
@@ -120,7 +153,7 @@ namespace StockMarket
             } 
 
         }// STOCK STATUS
-        static public void StockStatusNum(List<Stock> stockList, MathLogic math) // DISPLAYS STATUS OF ALL STOCKS, NUMBERS FOR BUYING/SELLING
+        static public void StockStatusNum(List<Stock> stockList, StockMath math) // DISPLAYS STATUS OF ALL STOCKS, NUMBERS FOR BUYING/SELLING
         {
             int counter = 1;
             Console.WriteLine("uTrade TM:");
