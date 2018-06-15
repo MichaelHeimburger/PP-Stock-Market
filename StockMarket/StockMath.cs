@@ -43,6 +43,35 @@ namespace StockMarket
                 stock.Month();
             }
         }
+        public void ReadNews(List<Stock> stocklist)
+        {
+            foreach(Stock stock in stocklist)
+            {
+                if(stock.News == null)
+                {
+
+                }
+                else
+                {
+                    Console.WriteLine(stock.News);
+                    Console.WriteLine();
+                }
+            }
+        }
+        public void DelStock(List <Stock> stocklist)
+        {
+            foreach(Stock stock in stocklist)
+            {
+
+                if (stock.BankCounter == 3)
+                {
+
+                    stocklist.Remove(stock);
+                    break;
+                }
+
+            }
+        }
 
     }
 }

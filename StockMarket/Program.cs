@@ -112,15 +112,14 @@ namespace StockMarket
                     case '3':
  // News Case
                         Console.Clear();
-                        foreach(Stock stocknews in stockList)
-                        {
-                            Console.WriteLine(stocknews.News);
-                        }
+                        Console.WriteLine("CNN.com/stockinfo \n \n \n ");
+                        math.ReadNews(stockList);
                         Console.WriteLine("Press any key to go back to the console.");
                         Console.ReadKey();
                         break;
                     case '4':
                         // Advance month case
+                        math.DelStock(stockList);
                         math.AllMonth(stockList);
                         break;
                     case '5':
