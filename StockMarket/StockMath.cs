@@ -67,7 +67,9 @@ namespace StockMarket
                 {
 
                     stocklist.Remove(stock);
+
                     break;
+
                 }
 
             }

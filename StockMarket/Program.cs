@@ -76,7 +76,7 @@ namespace StockMarket
                         Console.WriteLine("\n \n Enter the number of the Stock you would like to buy");
                         stockSelection = int.Parse(Console.ReadLine()); stockSelection--;
                         Console.WriteLine(" \n And how many of that stock would you like to buy?");
-                        stockOrder = int.Parse(Console.ReadLine());
+                        stockOrder = int.Parse(Console.ReadLine());yy
                         if (stockOrder * stockList[stockSelection].Price > user.Money)
                         {
                             Console.WriteLine("Sorry you dont have the funds in your account \n press any key to continue..........");
@@ -119,7 +119,9 @@ namespace StockMarket
                         break;
                     case '4':
                         // Advance month case
+
                         math.DelStock(stockList);
+
                         math.AllMonth(stockList);
                         break;
                     case '5':
